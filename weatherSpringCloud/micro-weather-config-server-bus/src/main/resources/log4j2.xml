@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">  
+    <Appenders>  
+        <!--添加一个控制台追加器-->  
+        <Console name="Console" target="SYSTEM_OUT" follow="true">  
+            <PatternLayout>  
+                <pattern>[com.example.micro-weather-config-server-bus][%-5p][%l] [%d][Thread:%t] %c - %m%n</pattern>  
+            </PatternLayout>  
+        </Console>  
+        <!--添加一个文本追加器，文件位于根目录下，名为log.log-->  
+        <File name="File" fileName="D:/logs/micro-weather-config-server-bus/micro-weather-config-server-bus.log">  
+            <PatternLayout>  
+                <pattern>[com.example.micro-weather-config-server-bus][%-5p][%l] [%d][Thread:%t]%c - %m%n</pattern>  
+            </PatternLayout>  
+        </File>
+        <RollingRandomAccessFile name="DalilyFile" fileName="D:/logs/micro-weather-config-server-bus/test.log" filePattern="D:/demo/logs/demo/test_%d{yyyyMMdd}.log">
+            <PatternLayout>  
+                <pattern>[com.example.micro-weather-config-server-bus][%-5p][%l] [%d][Thread:%t]%c - %m%n</pattern>  
+            </PatternLayout>  
+            <!-- 文件存储的大小 -->
+            <Policies>
+            
+            </Policies>
+            <TimeBasedTriggeringPolicy interval="24"></TimeBasedTriggeringPolicy>
+            <SizeBasedTriggeringPolicy size="100MB"></SizeBasedTriggeringPolicy>
+        </RollingRandomAccessFile>  
+    </Appenders>  
+    <Loggers>  
+        <Root level="info">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="DalilyFile" /> 
+        </Root>  
+　　　　<!--把org.springframework包下的所有日志输出到log文件，additivity="false"表示不输出到控制台-->
+        <Logger name="org.springframework" level="info" additivity="true">    
+            <AppenderRef ref="File" />  
+        </Logger>    
+    </Loggers>  
+</Configuration>  

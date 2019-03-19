@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>大超的天气预报</title>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<h3 th:text="${reportModel.title}">waylau</h3>
+			<select class="custom-select" id="selectCityId">
+				<option th:each="city : ${reportModel.cityList}"
+					th:value="${city.cityId}" th:text="${city.cityName}"
+					th:selected="${city.cityId eq reportModel.cityId}">Volvo</option>
+			</select>
+		</div>
+		<div  th:if="${reportModel.report} != null">		
+			<div class="row">
+				<h1 class="text-success" th:text="${reportModel.report.city}"></h1>
+			</div>
+			<div class="row">
+				<p>
+					空气质量指数：<span th:text="${reportModel.report.aqi}"></span>
+				</p>
+			</div>
+			<div class="row">
+				<p>
+					当前温度：<span th:text="${reportModel.report.wendu}"></span>
+				</p>
+			</div>
+			<div class="row">
+				<p>
+					温馨提示：<span th:text="${reportModel.report.ganmao}"></span>
+				</p>
+	
+			</div>
+	
+	
+			<div class="row">
+				<div class="card border-info" th:each="forecast : ${reportModel.report.forecast}">
+					<div class="card-body text-info">
+						<p class="card-text" th:text="${forecast.date}">周五</p>
+						<p class="card-text" th:text="${forecast.type}">晴转多云</p>
+						<p class="card-text" th:text="${forecast.high}">高温 28℃</p>
+						<p class="card-text" th:text="${forecast.low}">低温 21℃</p>
+						<p class="card-text" th:text="${forecast.fengxiang}">无持续风向微风</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<p>
+					城市编号：<span th:text="${reportModel.cityDetail.cityId}"></span>
+				</p>
+			</div>
+			<div class="row">
+				<p>
+					城市级别：<span th:text="${reportModel.cityDetail.cityLevel}"></span>
+				</p>
+			</div>
+			<div class="row">
+				<p>
+					城市口号：<span th:text="${reportModel.cityDetail.cityDescrible}"></span>
+				</p>
+			</div>
+			<div class="row">
+				<p>
+					城市美食：<span th:text="${reportModel.cityDetail.cityFood}"></span>
+				</p>
+			</div>
+			<div class="row">
+				<p>
+					城市景点：<span th:text="${reportModel.cityDetail.cityViewPoint}"></span>
+				</p>
+			</div>
+			<div class="row">
+				<p>
+					美女指数：<span th:text="${reportModel.cityDetail.citybeautiIndex}"></span>
+				</p>
+			</div>
+		</div>
+		<div  th:if="${reportModel.report} == null">	
+			<div class="row">
+				<p>
+					天气数据 API 服务暂时不可用！
+				</p>
+			</div>	
+		</div>
+	</div>
+	<div style="border:1px solid green;width:660px;margin:40px auto;margin-left:390px;">
+		
+		<p style="text-align:center;">
+		公元2019年3月12日 	作者：廖超    &nbsp; &nbsp; &nbsp; 天下英雄出我辈，一如江湖岁月催！
+		
+		</p>
+		
+		
+		</div>
+
+
+	<script type="text/javascript" src="../../js/jquery/jquery-3.2.1.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+		integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../../js/jquery/bootstrap.min.js"></script>
+	<script th:src="@{/js/weather/report.js}"></script>
+</body>
+</html>

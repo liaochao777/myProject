@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      name: msa-weather-city-eureka #需要从git上读取的资源名称
+      profile: test  #本次访问的配置项（环境）
+      label: master
+      uri: http://localhost:8776/  #本次访问的config服务器
+ 
