@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RefreshScope
 public class VersionController {
+	/**
 	@Value("${spring.application.name}")
 	private String applicationName;
 	@Value("${server.port}")
@@ -19,4 +20,5 @@ public class VersionController {
 		return applicationName+""+port;
 		
 	}
+	*/
 }
